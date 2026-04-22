@@ -31,3 +31,11 @@
     width: 100%;
     border-radius: 20px;
 }
+
+.home-zinara-collections__container h3 {
+    font-family: var(--font-body-family);
+    font-weight: 600;
+}
+.home-zinara-collections__container a {
+    text-decoration: none;
+}
