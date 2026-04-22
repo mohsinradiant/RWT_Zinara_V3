@@ -30,6 +30,10 @@
     .zinara-collection_container {
         column-count: 2;
     }
+
+    .home-zinara-collections__container h3 {
+        font-size: 1.2rem;
+    }
 }
 
 .zinara-collection_link img {
@@ -46,10 +50,4 @@
 
 .home-zinara-collections__container a {
     text-decoration: none;
-}
-
-@media(max-width: 768px) {
-    .home-zinara-collections__container h3 {
-        font-size: 1.2rem;
-    }
 }
