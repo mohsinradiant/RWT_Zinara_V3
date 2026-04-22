@@ -4,7 +4,12 @@
     <div class="zinara-collection_container">
       <a href="{{ block.settings.collection_link }}" class="zinara-collection_link">
         <img
-          src="{{ block.settings.collection_image | img_url }}"
+          src="{{ block.settings.collection_desktop_image | img_url }}"
+          alt="{{ block.settings.collection_title }}"
+          class="zinara-collection_image"
+        >
+        <img
+          src="{{ block.settings.collection_mobile_image | img_url }}"
           alt="{{ block.settings.collection_title }}"
           class="zinara-collection_image"
         >
@@ -42,7 +47,12 @@
         },
         {
           "type": "image_picker",
-          "id": "collection_image",
+          "id": "collection_desktop_image",
+          "label": "Collection Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_mobile_image",
           "label": "Collection Image"
         }
       ]
