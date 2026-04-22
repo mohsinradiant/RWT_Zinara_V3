@@ -34,10 +34,12 @@
     .home-zinara-collections__container h3 {
         font-size: 1.2rem;
     }
-    .zinara-collection_mobile-image{
+
+    .zinara-collection_mobile-image {
         display: block;
     }
-    .zinara-collection_image{
+
+    .zinara-collection_image {
         display: none;
     }
 }
