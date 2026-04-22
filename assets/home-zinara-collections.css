@@ -7,12 +7,9 @@
 }
 
 .zinara-collection_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    column-count: 3;
+    column-gap: 15px;
     margin-top: 30px;
-    grid-auto-flow: row;
-    grid-auto-rows: auto;
 }
 
 .zinara-collection_mobile-image {
@@ -24,19 +21,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.zinara-collection_link img {
-    width: 100%;
-    border-radius: 20px;
-    height: auto;
-    display: block;
+    break-inside: avoid;
+    margin-bottom: 15px;
 }
 
 /* Mobile: 2 columns */
 @media (max-width: 768px) {
     .zinara-collection_container {
-        grid-template-columns: repeat(2, 1fr);
+        column-count: 2;
     }
 }
 
