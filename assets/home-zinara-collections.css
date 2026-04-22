@@ -31,6 +31,10 @@
         column-count: 2;
     }
 
+    .home-zinara-collections__container {
+        margin-top: 50px;
+    }
+
     .home-zinara-collections__container h3 {
         font-size: 1.2rem !important;
     }
