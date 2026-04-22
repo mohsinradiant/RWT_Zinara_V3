@@ -11,7 +11,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     margin-top: 30px;
-    grid-auto-flow: row;
+    grid-auto-flow: dense;
     grid-auto-rows: auto;
 }
 
@@ -26,17 +26,27 @@
     align-items: center;
 }
 
-.zinara-collection_link img {
-    width: 100%;
-    border-radius: 20px;
-    height: auto;
-    display: block;
+/* Create varying heights for masonry effect */
+.zinara-collection_link:nth-child(2) {
+    grid-row: span 2;
+}
+
+.zinara-collection_link:nth-child(4) {
+    grid-row: span 2;
 }
 
 /* Mobile: 2 columns */
 @media (max-width: 768px) {
     .zinara-collection_container {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .zinara-collection_link:nth-child(2) {
+        grid-row: span 1;
+    }
+    
+    .zinara-collection_link:nth-child(4) {
+        grid-row: span 1;
     }
 }
 
