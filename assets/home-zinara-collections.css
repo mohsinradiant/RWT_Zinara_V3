@@ -7,12 +7,11 @@
 }
 
 .zinara-collection_container {
-    display: flex;
-    align-items: start;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 15px;
-    justify-content: start;
     margin-top: 30px;
+    grid-auto-flow: dense;
 }
 
 .zinara-collection_mobile-image {
@@ -24,7 +23,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 32%;
 }
 
 .zinara-collection_link img {
