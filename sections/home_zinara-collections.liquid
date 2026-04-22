@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="{{ 'home-zinara-collections.css' | asset_url }}">
 <div class="page-width home-zinara-collections__container">
   <h2>{{ section.settings.heading }}</h2>
-  {% for block in section.blocks %}
-    <div class="zinara-collection_container">
+  <div class="zinara-collection_container">
+    {% for block in section.blocks %}
       <a href="{{ block.settings.collection_link }}" class="zinara-collection_link">
         <img
           src="{{ block.settings.collection_desktop_image | img_url }}"
@@ -16,8 +16,8 @@
         >
         <h3 class="zinara-collection_title">{{ block.settings.collection_title }}</h3>
       </a>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </div>
 
 {% schema %}
