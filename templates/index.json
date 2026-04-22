@@ -332,6 +332,25 @@
         "heading": "The Zinara Experience"
       }
     },
+    "home_zinara_collections_4a4H4a": {
+      "type": "home_zinara-collections",
+      "blocks": {
+        "collection_MwMYmm": {
+          "type": "collection",
+          "settings": {
+            "collection_title": "@everyday.elegance",
+            "collection_link": "shopify://collections"
+          }
+        }
+      },
+      "block_order": [
+        "collection_MwMYmm"
+      ],
+      "name": "Home Zinara Collections",
+      "settings": {
+        "heading": "Zinara Collections"
+      }
+    },
     "home_shop_by_category_xRd7wT": {
       "type": "home-shop_by_category",
       "blocks": {
@@ -1075,13 +1094,6 @@
         "desktop_layout": "image_second",
         "padding_top": 52,
         "padding_bottom": 0
-      }
-    },
-    "home_zinara_collections_4a4H4a": {
-      "type": "home_zinara-collections",
-      "name": "Home Zinara Collections",
-      "settings": {
-        "heading": "Zinara Collections"
       }
     }
   },
