@@ -1,19 +1,21 @@
 <div class="section-{{ section.id }}">
-  <div class="carousel-wrapper" id="carousel-{{ section.id }}">
-    <div class="carousel-track">
-      {% for block in section.blocks %}
-        <div class="carousel-slide" {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.url }}">
-            <img src="{{ block.settings.image | image_url: width: 800 }}">
-            <div class="carousel-label">
-              {{ block.settings.text }}
-            </div>
-          </a>
-        </div>
-      {% endfor %}
-    </div>
+  <div class="page-width">
+    <div class="carousel-wrapper" id="carousel-{{ section.id }}">
+      <div class="carousel-track">
+        {% for block in section.blocks %}
+          <div class="carousel-slide" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.url }}">
+              <img src="{{ block.settings.image | image_url: width: 800 }}">
+              <div class="carousel-label">
+                {{ block.settings.text }}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
 
-    <div class="carousel-dots"></div>
+      <div class="carousel-dots"></div>
+    </div>
   </div>
 </div>
 {% stylesheet %}
