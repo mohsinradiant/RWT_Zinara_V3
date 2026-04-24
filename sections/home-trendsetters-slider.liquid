@@ -118,9 +118,11 @@
   }
 {% endstylesheet %}
 
-{% javascript %}
-  (function () {
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
     const root = document.getElementById('carousel-{{ section.id }}');
+    if (!root) return;
+
     const track = root.querySelector('.carousel-track');
     const dotsContainer = root.querySelector('.carousel-dots');
 
@@ -129,7 +131,7 @@
     let autoTimer;
     const SLIDE_TIME = 4000;
 
-    // CLONE (infinite loop)
+    // CLONE
     const first = slides[0].cloneNode(true);
     const last = slides[slides.length - 1].cloneNode(true);
 
@@ -138,24 +140,21 @@
 
     slides = Array.from(track.children);
 
-    function getSlideWidth() {
+    function getWidth() {
       return slides[0].getBoundingClientRect().width;
     }
 
-    function setPosition(animate = true) {
-      const width = getSlideWidth();
+    function setPos(animate = true) {
+      const width = getWidth();
       track.style.transition = animate ? 'transform 0.5s ease' : 'none';
       track.style.transform = `translateX(-${index * width}px)`;
-      updateClasses();
-      updateDots();
-    }
 
-    function updateClasses() {
       slides.forEach((s) => s.classList.remove('is-active', 'is-prev', 'is-next'));
-
       slides[index]?.classList.add('is-active');
       slides[index - 1]?.classList.add('is-prev');
       slides[index + 1]?.classList.add('is-next');
+
+      updateDots();
     }
 
     function buildDots() {
@@ -177,29 +176,29 @@
 
     function next() {
       index++;
-      setPosition();
+      setPos();
 
       if (index === slides.length - 1) {
         setTimeout(() => {
           index = 1;
-          setPosition(false);
+          setPos(false);
         }, 500);
       }
     }
 
     function prev() {
       index--;
-      setPosition();
+      setPos();
 
       if (index === 0) {
         setTimeout(() => {
           index = slides.length - 2;
-          setPosition(false);
+          setPos(false);
         }, 500);
       }
     }
 
-    function autoPlay() {
+    function autoplay() {
       clearInterval(autoTimer);
       autoTimer = setInterval(next, SLIDE_TIME);
     }
@@ -214,21 +213,21 @@
       return e.touches ? e.touches[0].clientX : e.pageX;
     }
 
-    function dragStart(e) {
+    function start(e) {
       isDown = true;
       startX = getX(e);
-      prevTranslate = -index * getSlideWidth();
+      prevTranslate = -index * getWidth();
       track.style.transition = 'none';
     }
 
-    function dragMove(e) {
+    function move(e) {
       if (!isDown) return;
       const diff = getX(e) - startX;
       current = prevTranslate + diff;
       track.style.transform = `translateX(${current}px)`;
     }
 
-    function dragEnd() {
+    function end() {
       if (!isDown) return;
       isDown = false;
 
@@ -236,52 +235,45 @@
 
       if (moved < -50) next();
       else if (moved > 50) prev();
-      else setPosition();
+      else setPos();
 
-      autoPlay();
+      autoplay();
     }
 
-    track.addEventListener('mousedown', dragStart);
-    track.addEventListener('touchstart', dragStart);
+    track.addEventListener('mousedown', start);
+    track.addEventListener('touchstart', start);
 
-    window.addEventListener('mousemove', dragMove);
-    window.addEventListener('touchmove', dragMove);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move);
 
-    window.addEventListener('mouseup', dragEnd);
-    window.addEventListener('touchend', dragEnd);
-
-    // FIX: wait for images to load before init
-    function initWhenReady() {
-      const imgs = track.querySelectorAll('img');
-      let loaded = 0;
-
-      imgs.forEach((img) => {
-        if (img.complete) loaded++;
-        else {
-          img.onload = () => {
-            loaded++;
-            if (loaded === imgs.length) init();
-          };
-        }
-      });
-
-      if (loaded === imgs.length) init();
-    }
+    window.addEventListener('mouseup', end);
+    window.addEventListener('touchend', end);
 
     function init() {
       buildDots();
-      setPosition(false);
-      autoPlay();
+      setPos(false);
+      autoplay();
     }
 
-    // also fix resize glitch
-    window.addEventListener('resize', () => {
-      setPosition(false);
+    // WAIT for images
+    const imgs = track.querySelectorAll('img');
+    let loaded = 0;
+
+    imgs.forEach((img) => {
+      if (img.complete) loaded++;
+      else {
+        img.onload = () => {
+          loaded++;
+          if (loaded === imgs.length) init();
+        };
+      }
     });
 
-    initWhenReady();
-  })();
-{% endjavascript %}
+    if (loaded === imgs.length) init();
+
+    window.addEventListener('resize', () => setPos(false));
+  });
+</script>
 
 {% schema %}
 {
