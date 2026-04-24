@@ -121,7 +121,15 @@
         background: #1A1A1A;
         animation: dotProgress 4s linear forwards;
       }
-
+.trend-pagination-{{ section.id }} {
+  margin-top: 24px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 5;
+}
       @keyframes dotProgress {
         from { width: 0%; }
         to { width: 100%; }
@@ -164,8 +172,7 @@
 
       on: {
         slideChange: function () {
-          const bullets = document.querySelectorAll('.trend-carousel-{{ section.id }} .swiper-pagination-bullet');
-
+const bullets = document.querySelectorAll('.trend-pagination-{{ section.id }} .swiper-pagination-bullet');
           bullets.forEach((b) => {
             b.style.animation = 'none';
             b.offsetHeight; // force reflow
