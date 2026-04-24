@@ -1,0 +1,298 @@
+<div class="section-{{ section.id }}">
+  <div class="carousel-wrapper" id="carousel-{{ section.id }}">
+    <div class="carousel-track">
+      {% for block in section.blocks %}
+        <div class="carousel-slide" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.url }}">
+            <img src="{{ block.settings.image | image_url: width: 800 }}">
+            <div class="carousel-label">
+              {{ block.settings.text }}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="carousel-dots"></div>
+  </div>
+</div>
+{% stylesheet %}
+  .section-{{ section.id }} {
+    background: #f4f4f4;
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .carousel-track {
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+
+  .carousel-slide {
+    flex: 0 0 60%;
+    padding: 0 10px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+
+  .carousel-slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .carousel-slide.is-prev,
+  .carousel-slide.is-next {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+
+  .carousel-slide a {
+    display: block;
+    position: relative;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .carousel-label {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 3px;
+  }
+
+  /* DOTS */
+
+  .carousel-dots {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .carousel-dot {
+    height: 6px;
+    width: 6px;
+    background: #bbb;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-dot.active {
+    width: 28px;
+    background: #ddd;
+  }
+
+  .carousel-dot.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: #000;
+    animation: dotProgress 4s linear forwards;
+  }
+
+  @keyframes dotProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    const root = document.getElementById('carousel-{{ section.id }}');
+    const track = root.querySelector('.carousel-track');
+    let slides = Array.from(track.children);
+    const dotsContainer = root.querySelector('.carousel-dots');
+
+    let index = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let autoTimer;
+
+    const SLIDE_TIME = 4000;
+
+    // clone for infinite loop
+    const cloneFirst = slides[0].cloneNode(true);
+    const cloneLast = slides[slides.length - 1].cloneNode(true);
+
+    track.appendChild(cloneFirst);
+    track.insertBefore(cloneLast, slides[0]);
+
+    slides = Array.from(track.children);
+    index = 1;
+
+    function updatePosition(animate = true) {
+      const slideWidth = slides[0].offsetWidth;
+      track.style.transition = animate ? 'transform 0.5s ease' : 'none';
+      track.style.transform = `translateX(-${index * slideWidth}px)`;
+      updateClasses();
+      updateDots();
+    }
+
+    function updateClasses() {
+      slides.forEach((s) => s.classList.remove('is-active', 'is-prev', 'is-next'));
+
+      slides[index].classList.add('is-active');
+      slides[index - 1]?.classList.add('is-prev');
+      slides[index + 1]?.classList.add('is-next');
+    }
+
+    function buildDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < slides.length - 2; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('carousel-dot');
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateDots() {
+      const realIndex = (index - 1 + (slides.length - 2)) % (slides.length - 2);
+      const dots = dotsContainer.children;
+
+      [...dots].forEach((d) => {
+        d.classList.remove('active');
+        d.style.animation = 'none';
+      });
+
+      if (dots[realIndex]) {
+        dots[realIndex].classList.add('active');
+      }
+    }
+
+    function nextSlide() {
+      index++;
+      updatePosition();
+
+      if (index === slides.length - 1) {
+        setTimeout(() => {
+          index = 1;
+          updatePosition(false);
+        }, 500);
+      }
+    }
+
+    function prevSlide() {
+      index--;
+      updatePosition();
+
+      if (index === 0) {
+        setTimeout(() => {
+          index = slides.length - 2;
+          updatePosition(false);
+        }, 500);
+      }
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(nextSlide, SLIDE_TIME);
+    }
+
+    // DRAG (mouse + touch)
+    track.addEventListener('mousedown', startDrag);
+    track.addEventListener('touchstart', startDrag);
+
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+
+    window.addEventListener('mousemove', drag);
+    window.addEventListener('touchmove', drag);
+
+    function startDrag(e) {
+      isDragging = true;
+      startX = getX(e);
+      prevTranslate = -index * slides[0].offsetWidth;
+      track.style.transition = 'none';
+    }
+
+    function drag(e) {
+      if (!isDragging) return;
+      const currentX = getX(e);
+      const diff = currentX - startX;
+      currentTranslate = prevTranslate + diff;
+      track.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    function endDrag(e) {
+      if (!isDragging) return;
+      isDragging = false;
+
+      const movedBy = currentTranslate - prevTranslate;
+
+      if (movedBy < -50) nextSlide();
+      else if (movedBy > 50) prevSlide();
+      else updatePosition();
+
+      startAuto();
+    }
+
+    function getX(e) {
+      return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    }
+
+    // INIT
+    buildDots();
+    updatePosition(false);
+    startAuto();
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Trendsetters Carousel",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Label",
+          "default": "Daily Wear"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trendsetters Carousel"
+    }
+  ]
+}
+{% endschema %}
