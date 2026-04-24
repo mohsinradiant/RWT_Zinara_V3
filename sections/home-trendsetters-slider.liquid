@@ -144,12 +144,31 @@
     function getWidth() {
       return slides[0].getBoundingClientRect().width;
     }
-
+    function getCurrentTranslateX(el) {
+      const style = window.getComputedStyle(el);
+      const matrix = new WebKitCSSMatrix(style.transform);
+      return matrix.m41;
+    }
     function setPos(animate = true) {
-      const width = getWidth();
-      track.style.transition = animate ? 'transform 0.5s ease' : 'none';
-      track.style.transform = `translateX(-${index * width}px)`;
+      const container = root.querySelector('.carousel-wrapper');
+      const containerRect = container.getBoundingClientRect();
+      const slide = slides[index];
+      const slideRect = slide.getBoundingClientRect();
 
+      // calculate center alignment
+      const slideCenter = slideRect.left + slideRect.width / 2;
+      const containerCenter = containerRect.left + containerRect.width / 2;
+
+      const currentTransform = getCurrentTranslateX(track);
+
+      const offset = slideCenter - containerCenter;
+
+      const finalTranslate = currentTransform - offset;
+
+      track.style.transition = animate ? 'transform 0.5s ease' : 'none';
+      track.style.transform = `translateX(${finalTranslate}px)`;
+
+      // classes
       slides.forEach((s) => s.classList.remove('is-active', 'is-prev', 'is-next'));
       slides[index]?.classList.add('is-active');
       slides[index - 1]?.classList.add('is-prev');
