@@ -13,6 +13,10 @@ slider-component {
   margin: 0;
 }
 
+.collection slider-component .svg-wrapper {
+  scale: .5;
+}
+
 slider-component.slider-component-full-width {
   --desktop-margin-left-first-item: 1.5rem;
 }
