@@ -145,32 +145,18 @@
       return slides[0].getBoundingClientRect().width;
     }
 
-function setPos(animate = true) {
-  const slide = slides[index];
+    function setPos(animate = true) {
+      const width = getWidth();
+      track.style.transition = animate ? 'transform 0.5s ease' : 'none';
+      track.style.transform = `translateX(-${index * width}px)`;
 
-  // actual position of slide inside track
-  const slideLeft = slide.offsetLeft;
+      slides.forEach((s) => s.classList.remove('is-active', 'is-prev', 'is-next'));
+      slides[index]?.classList.add('is-active');
+      slides[index - 1]?.classList.add('is-prev');
+      slides[index + 1]?.classList.add('is-next');
 
-  // center calculation
-  const container = root.querySelector('.carousel-wrapper');
-  const containerWidth = container.offsetWidth;
-  const slideWidth = slide.offsetWidth;
-
-  const centerOffset = (containerWidth - slideWidth) / 2;
-
-  const translate = -(slideLeft - centerOffset);
-
-  track.style.transition = animate ? 'transform 0.5s ease' : 'none';
-  track.style.transform = `translateX(${translate}px)`;
-
-  // classes
-  slides.forEach((s) => s.classList.remove('is-active', 'is-prev', 'is-next'));
-  slides[index]?.classList.add('is-active');
-  slides[index - 1]?.classList.add('is-prev');
-  slides[index + 1]?.classList.add('is-next');
-
-  updateDots();
-}
+      updateDots();
+    }
 
     function buildDots() {
       dotsContainer.innerHTML = '';
