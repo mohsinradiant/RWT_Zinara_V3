@@ -146,10 +146,20 @@
     }
 
     function setPos(animate = true) {
-      const width = getWidth();
-      track.style.transition = animate ? 'transform 0.5s ease' : 'none';
-      track.style.transform = `translateX(-${index * width}px)`;
+      const slideWidth = getWidth();
 
+      const container = root.querySelector('.carousel-wrapper');
+      const containerWidth = container.getBoundingClientRect().width;
+
+      // center offset
+      const offset = (containerWidth - slideWidth) / 2;
+
+      const translate = -(index * slideWidth) + offset;
+
+      track.style.transition = animate ? 'transform 0.5s ease' : 'none';
+      track.style.transform = `translateX(${translate}px)`;
+
+      // classes
       slides.forEach((s) => s.classList.remove('is-active', 'is-prev', 'is-next'));
       slides[index]?.classList.add('is-active');
       slides[index - 1]?.classList.add('is-prev');
