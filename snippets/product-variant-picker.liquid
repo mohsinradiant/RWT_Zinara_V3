@@ -46,10 +46,11 @@
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
+        {%- assign option_name_check = option.name | downcase | strip -%}
         <fieldset class="js product-form__input product-form__input--pill">
           <legend class="form__label">
             {{ option.name }}
-            {%- if option.name | downcase | strip == 'size' -%}
+            {%- if option_name_check == 'size' -%}
               <button type="button" class="size-chart-btn" id="openSizeChart" aria-label="Open size chart">
                 Size Chart
               </button>
