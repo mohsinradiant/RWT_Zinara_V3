@@ -8,12 +8,39 @@
 
 .home-featured_in-logos {
     display: flex;
-    overflow: auto;
+    overflow: hidden;
     gap: 30px;
     justify-content: start;
     align-items: center;
+    scroll-behavior: smooth;
+    animation: scroll 30s linear infinite;
+}
+
+.home-featured_in-logos::-webkit-scrollbar {
+    display: none;
+}
+
+.home-featured_in-logos {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.home-featured_in-logo-container {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .home-featured_in-logos img {
     height: 100px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
