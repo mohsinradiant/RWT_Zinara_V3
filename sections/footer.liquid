@@ -115,7 +115,7 @@
                     {% endfor %}
 
                     {% if has_platform %}
-                      <p>Also Available on</p>
+                      <p class="has_platform_heading">Also Available on</p>
                       <div class="also_available-on-container">
                         {%- for block in section.blocks -%}
                           {%- if block.type == 'platform' -%}
@@ -134,7 +134,7 @@
                     {% endif %}
 
                     {% if has_payment %}
-                      <p>Accepted Payment Methods</p>
+                      <p class="has_payment_heading">Accepted Payment Methods</p>
                       <div class="also_available-on-container">
                         {%- for block in section.blocks -%}
                           {%- if block.type == 'payment' -%}
