@@ -51,7 +51,7 @@
             {{ option.name }}
             {%- assign normalized_option_name = option.name | downcase | strip -%}
             {%- if normalized_option_name == 'size' -%}
-              <button type="button" class="size-chart-btn" id="openSizeChart" aria-label="Open size chart">
+              <button type="button" class="size-chart-btn" aria-label="Open size chart">
                 Size Chart
               </button>
             {%- endif -%}
@@ -183,17 +183,19 @@
   </div>
   <script>
     // Size Chart Bottom Sheet
-    const openSizeChartBtn = document.getElementById('openSizeChart');
+    const openSizeChartBtns = document.querySelectorAll('.size-chart-btn');
     const sizeChartBottomSheet = document.getElementById('sizeChartBottomSheet');
     const closeSizeChartBtn = document.getElementById('closeSizeChartBtn');
     const sizeChartOverlay = document.getElementById('sizeChartOverlay');
 
-    if (openSizeChartBtn && sizeChartBottomSheet) {
-      openSizeChartBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        sizeChartBottomSheet.classList.add('active');
-        sizeChartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    if (openSizeChartBtns.length > 0 && sizeChartBottomSheet && closeSizeChartBtn && sizeChartOverlay) {
+      openSizeChartBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          sizeChartBottomSheet.classList.add('active');
+          sizeChartOverlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
       });
 
       closeSizeChartBtn.addEventListener('click', () => {
