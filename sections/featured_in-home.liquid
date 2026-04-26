@@ -1,0 +1,72 @@
+<div class="home-featured_in-container">
+  <h2 class="home-featured_in-heading">{{ section.settings.heading }}</h2>
+  <div class="home-featured_in-logos">
+    {% for block in section.blocks %}
+      <div class="home-featured_in-logo-container">
+        <img
+          src="{{ block.settings.image | img_url: 'medium' }}"
+          alt="{{ block.settings.alt_text }}"
+          class="home-featured_in-logo"
+        >
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Home Featured In",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Featured In"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_picker",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text",
+          "default": "testimonialcarousel Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "review",
+          "label": "Review"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Testimonials",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
