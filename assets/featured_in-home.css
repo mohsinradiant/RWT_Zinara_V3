@@ -48,4 +48,7 @@
     .home-featured_in-logo-container img {
     height: 50px;
 }
+.home-featured_in-logos {
+    gap: 20px;
+}
 }
