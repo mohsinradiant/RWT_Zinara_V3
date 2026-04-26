@@ -168,7 +168,7 @@
 }
 
 .platform-logo {
-  max-width: 150px;
+  width: 90px;
   height: auto;
   display: block;
 }
