@@ -2041,6 +2041,7 @@ sticky-header {
     .testimonial-container {
         scroll-snap-align: start;
         min-width: 80% !important;
+        border-radius: 25px !important;
     }
 
     .home-testimonials-carousel-parent {
