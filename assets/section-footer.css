@@ -199,7 +199,7 @@
 }
 
 .has_payment_heading{
-  margin-bottom: 2rem;
+  margin-bottom: 15px;
   margin-top: 0;
   font-size: 1.6rem;
   font-weight: 500;
@@ -207,7 +207,7 @@
   color: #712242;
 }
 .has_platform_heading{
-  margin-bottom: 2rem;
+  margin-bottom: 15px;
   margin-top: 2rem;
   font-size: 1.6rem;
   font-weight: 500;
