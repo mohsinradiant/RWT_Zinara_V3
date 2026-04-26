@@ -25,7 +25,7 @@
     {%- if section.settings.show_collection_image -%}
       {%- assign desktop_image = collection.metafields.custom.main_image_desktop -%}
       {%- assign mobile_image = collection.metafields.custom.main_image_mobile -%}
-      
+
       {%- if desktop_image or mobile_image -%}
         <div class="collection-hero__image-container media gradient">
           {%- if mobile_image -%}
@@ -44,7 +44,7 @@
               class="collection-hero__image-mobile"
             >
           {%- endif -%}
-          
+
           {%- if desktop_image -%}
             <img
               srcset="
