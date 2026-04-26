@@ -167,9 +167,15 @@
   gap: 0.5rem;
   width: fit-content;
 }
-.payment-item{
+
+.payment-item {
   width: fit-content;
 }
+
+.payment-item img {
+  width: 50px
+}
+
 .platform-logo {
   width: 90px;
   height: auto;
