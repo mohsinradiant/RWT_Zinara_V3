@@ -135,7 +135,7 @@
 
                     {% if has_payment %}
                       <p class="has_payment_heading">Accepted Payment Methods</p>
-                      <div class="also_available-on-container">
+                      <div class="also_available-on-container_2">
                         {%- for block in section.blocks -%}
                           {%- if block.type == 'payment' -%}
                             <div class="payment-item" {{ block.shopify_attributes }}>
