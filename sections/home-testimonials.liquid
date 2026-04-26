@@ -11,7 +11,7 @@
             <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt_text }}">
           </div>
           <div>
-            <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt_text }}">
+            <img src="https://cdn.shopify.com/s/files/1/0661/8336/4792/files/Div_flex_1.png?v=1777195544">
             <p>{{ block.settings.review }}</p>
             <a href="{{ block.settings.link }}">{{ block.settings.link_text }}</a>
           </div>
@@ -292,6 +292,16 @@
           "type": "text",
           "id": "review",
           "label": "Review"
+        },
+        {
+          "type": "text",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
         }
       ]
     }
