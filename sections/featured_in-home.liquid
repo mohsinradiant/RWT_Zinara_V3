@@ -62,23 +62,30 @@
   ]
 }
 {% endschema %}
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.home-featured_in-slider', {
-      loop: true,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-      },
-      speed: 5000,
-      slidesPerView: 'auto',
-      spaceBetween: 30,
-      allowTouchMove: false,
-      keyboard: false,
-      grabCursor: false,
-      simulateTouch: false,
+    const logos = document.querySelector('.home-featured_in-logos');
+    if (!logos) return;
+
+    // Get the width of one complete set of logos
+    const logosArray = Array.from(logos.querySelectorAll('.home-featured_in-logo-container'));
+    const halfCount = logosArray.length / 2;
+    
+    // Calculate width of one complete set
+    let setWidth = 0;
+    for (let i = 0; i < halfCount; i++) {
+      setWidth += logosArray[i].offsetWidth + 30; // 30px gap
+    }
+
+    // Create continuous scrolling animation using GSAP
+    gsap.to(logos, {
+      x: -setWidth,
+      duration: 20,
+      ease: 'none',
+      repeat: -1,
+      onRepeat: function() {
+        gsap.set(logos, { x: 0 });
+      }
     });
   });
 </script>
