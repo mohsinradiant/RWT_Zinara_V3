@@ -123,6 +123,29 @@
                         {%- endfor -%}
                       </div>
                     {% endif %}
+
+                    {% if section.blocks.type.payment != blank %}
+                      <p>Accepted Payment Methods</p>
+                      <div class="also_available-on-container">
+                        {%- for block in section.blocks -%}
+                          {%- if block.type == 'payment' -%}
+                            <div class="payment-item" {{ block.shopify_attributes }}>
+                              {%- if block.settings.image != blank -%}
+                                <img
+                                  src="{{ block.settings.image | image_url: width: 200 }}"
+                                  alt="{{ block.settings.heading }}"
+                                  class="payment-logo"
+                                >
+                              {%- endif -%}
+                              {%- if block.settings.heading != blank -%}
+                                <p class="payment-heading">{{ block.settings.heading }}</p>
+                              {%- endif -%}
+                            </div>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    {% endif %}
+
                     <div class="footer-block__brand-info">
                       {%- if settings.brand_image != blank -%}
                         {%- assign brand_image_height = settings.brand_image_width
@@ -456,12 +479,17 @@
           "type": "image_picker",
           "id": "image",
           "label": "Platform Logo"
-        },
+        }
+      ]
+    },
+    {
+      "type": "payment",
+      "name": "Payment Methods",
+      "settings": [
         {
-          "type": "text",
-          "id": "heading",
-          "label": "Platform Name",
-          "default": "Platform"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Platform Logo"
         }
       ]
     }
