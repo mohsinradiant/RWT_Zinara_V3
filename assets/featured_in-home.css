@@ -5,3 +5,13 @@
     font-size: 2rem ;
     font-weight: 500 ;
 }
+.home-featured_in-logos{
+        display: flex;
+    overflow: auto;
+    gap: 70px;
+    justify-content: start;
+    align-items: center;
+}
+.home-featured_in-logos img{
+    width: 150px;
+}
