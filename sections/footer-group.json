@@ -17,15 +17,49 @@
         "platform_tGTAdA": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/Image_h-full.png",
-            "heading": ""
+            "image": "shopify://shop_images/Image_h-full.png"
           }
         },
         "platform_cLqy9p": {
           "type": "platform",
           "settings": {
-            "image": "shopify://shop_images/Div_h-5.png",
-            "heading": ""
+            "image": "shopify://shop_images/Div_h-5.png"
+          }
+        },
+        "payment_j4fpd8": {
+          "type": "payment",
+          "settings": {
+            "image": "shopify://shop_images/Div_w-_42px.png"
+          }
+        },
+        "payment_PUm4VF": {
+          "type": "payment",
+          "settings": {
+            "image": "shopify://shop_images/Div_w-_42px.png"
+          }
+        },
+        "payment_fjegcN": {
+          "type": "payment",
+          "settings": {
+            "image": "shopify://shop_images/Div_w-_42px.png"
+          }
+        },
+        "payment_JjDRLj": {
+          "type": "payment",
+          "settings": {
+            "image": "shopify://shop_images/Div_w-_42px.png"
+          }
+        },
+        "payment_LaGcke": {
+          "type": "payment",
+          "settings": {
+            "image": "shopify://shop_images/Div_w-_42px.png"
+          }
+        },
+        "payment_3GdygG": {
+          "type": "payment",
+          "settings": {
+            "image": "shopify://shop_images/Div_w-_42px.png"
           }
         },
         "link_list_Mfht8K": {
@@ -52,6 +86,12 @@
       "block_order": [
         "platform_tGTAdA",
         "platform_cLqy9p",
+        "payment_j4fpd8",
+        "payment_PUm4VF",
+        "payment_fjegcN",
+        "payment_JjDRLj",
+        "payment_LaGcke",
+        "payment_3GdygG",
         "link_list_Mfht8K",
         "link_list_URgP36",
         "brand_information_7xcQqn"
