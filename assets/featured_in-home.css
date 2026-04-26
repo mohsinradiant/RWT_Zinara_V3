@@ -44,3 +44,8 @@
 .home-featured_in-container {
     margin-bottom: 40px;
 }
+@media(max-width:768px){
+    .home-featured_in-logo-container img {
+    height: 50px;
+}
+}
