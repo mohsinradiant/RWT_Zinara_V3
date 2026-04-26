@@ -2044,9 +2044,6 @@ sticky-header {
         scroll-snap-type: x mandatory;
     }
 
-    .home-testimonials-carousel-parent .testimonial-container {
-        padding-left: 20px;
-    }
 
     .testimonial-container:not(.active) {
         opacity: 1 !important;
