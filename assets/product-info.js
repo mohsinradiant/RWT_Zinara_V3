@@ -379,6 +379,19 @@ if (!customElements.get('product-info')) {
           window.ProductInfoInitializer._triggerCallbacks();
         }
 
+        // Re-execute inline scripts within the section
+        // This ensures that DOMContentLoaded scripts and event listeners are re-attached
+        this.querySelectorAll('script:not([src])').forEach((script) => {
+          try {
+            // Clone and re-execute the script in the current context
+            const newScript = document.createElement('script');
+            newScript.textContent = script.textContent;
+            script.parentNode.replaceChild(newScript, script);
+          } catch (e) {
+            console.error('Error re-executing inline script:', e);
+          }
+        });
+
         // Dispatch custom event that scripts can listen to
         this.dispatchEvent(new CustomEvent('product-info-section-updated', { 
           bubbles: true, 
@@ -387,6 +400,19 @@ if (!customElements.get('product-info')) {
             timestamp: Date.now()
           } 
         }));
+
+        // Re-trigger wishlist engine positioning
+        setTimeout(() => {
+          if (window?.WishlistEngine?.reposition) {
+            window.WishlistEngine.reposition();
+          } else if (window?.wishlistEngine?.reposition) {
+            window.wishlistEngine.reposition();
+          }
+          // Try common third-party wishlist scripts
+          if (typeof Wishlistr !== 'undefined' && Wishlistr.reposition) {
+            Wishlistr.reposition();
+          }
+        }, 100);
       }
 
       updateVariantInputs(variantId) {
