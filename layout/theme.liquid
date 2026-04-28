@@ -1122,8 +1122,23 @@ function getProductPagePincodes() {
           <div class="size-chart-video-section">
             <h3>How to measure your ring size</h3>
             <div class="video-container">
-              {% assign video = product.metafields.custom.size_chart_video %}
-              {{ video | video_tag: width: 100%, height: 300 }}
+              {% if product.metafields.custom.size_chart_video.type == 'file_reference' %}
+                {{ product.metafields.custom.size_chart_video | video_tag: width: '100%', height: 300 }}
+              {% elsif product.metafields.custom.size_chart_video.type == 'single_line_text_field' %}
+                {% assign video_url = product.metafields.custom.size_chart_video.value %}
+                <iframe
+                  width="100%"
+                  height="300"
+                  src="{{ video_url }}"
+                  title="How to measure your ring size"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                >
+                </iframe>
+              {% else %}
+                {{ product.metafields.custom.size_chart_video.value | video_tag: width: '100%', height: 300 }}
+              {% endif %}
             </div>
           </div>
         {% endif %}
@@ -1132,38 +1147,34 @@ function getProductPagePincodes() {
           <div class="size-chart-table-section">
             <h3>Size Chart</h3>
             <table class="size-chart-table">
-              {% if product.metafields.custom.size_chart_headings %}
-                <thead>
-                  <tr>
-                    {% for heading in product.metafields.custom.size_chart_headings.value %}
-                      <th>{{ heading }}</th>
-                    {% endfor %}
-                  </tr>
-                </thead>
-              {% endif %}
-              {% if product.metafields.custom.size_chart %}
-                <tbody>
-                  {% for row in product.metafields.custom.size_chart.value %}
-                    <tr>
-                      {% if row.column_1 %}
-                        <td>{{ row.column_1 }}</td>
-                      {% endif %}
-                      {% if row.column_2 %}
-                        <td>{{ row.column_2 }}</td>
-                      {% endif %}
-                      {% if row.column_3 %}
-                        <td>{{ row.column_3 }}</td>
-                      {% endif %}
-                      {% if row.column_4 %}
-                        <td>{{ row.column_4 }}</td>
-                      {% endif %}
-                      {% if row.column_5 %}
-                        <td>{{ row.column_5 }}</td>
-                      {% endif %}
-                    </tr>
+              <thead>
+                <tr>
+                  {% for heading in product.metafields.custom.size_chart_headings.value %}
+                    <th>{{ heading }}</th>
                   {% endfor %}
-                </tbody>
-              {% endif %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in product.metafields.custom.size_chart.value %}
+                  <tr>
+                    {% if row.column_1 %}
+                      <td>{{ row.column_1 }}</td>
+                    {% endif %}
+                    {% if row.column_2 %}
+                      <td>{{ row.column_2 }}</td>
+                    {% endif %}
+                    {% if row.column_3 %}
+                      <td>{{ row.column_3 }}</td>
+                    {% endif %}
+                    {% if row.column_4 %}
+                      <td>{{ row.column_4 }}</td>
+                    {% endif %}
+                    {% if row.column_5 %}
+                      <td>{{ row.column_5 }}</td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+              </tbody>
             </table>
           </div>
         {% endif %}
