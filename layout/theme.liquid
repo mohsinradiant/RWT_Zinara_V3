@@ -318,9 +318,6 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
 
-    <!-- Plyr Video Player CSS -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-
     <link
       rel="stylesheet"
       href="{{ 'component-cart-items.css' | asset_url }}"
@@ -1124,10 +1121,10 @@ function getProductPagePincodes() {
         {% if product.metafields.custom.size_chart_video %}
           <div class="size-chart-video-section">
             <h3>How to measure your ring size</h3>
-            <div class="video-container" id="sizeChartVideoPlayer">
-              {% assign video_value = product.metafields.custom.size_chart_video.value %}
-              <video id="size-chart-video" playsinline controls data-poster="">
-                <source src="{{ video_value }}" type="video/mp4">
+            <div class="video-container">
+              {% assign video = product.metafields.custom.size_chart_video %}
+              <video id="size-chart-video" width="100%" height="300" controls playsinline>
+                <source src="{{ video.src }}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -1231,23 +1228,6 @@ function getProductPagePincodes() {
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-
-    <!-- Plyr Video Player JS -->
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const sizeChartVideo = document.getElementById('size-chart-video');
-        if (sizeChartVideo) {
-          const player = new Plyr(sizeChartVideo, {
-            controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
-            autoplay: false,
-            clickToPlay: true,
-            disableContextMenu: true,
-          });
-        }
-      });
-    </script>
-
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const contactLink = document.querySelector('.scrollable_contact_menu_header');
