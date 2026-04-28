@@ -326,35 +326,36 @@ if (!customElements.get('product-info')) {
         
         // Small delay to ensure DOM is fully settled
         requestAnimationFrame(() => {
-          // Find all inline scripts in the section (excluding external scripts with src attribute)
+          // FIRST: Initialize product-page-details dropdowns directly
+          // This ensures they work even if the inline script has issues
+          this.initializeProductDetailsDropdowns();
+
+          // SECOND: Find and re-execute all inline scripts
           const scripts = Array.from(this.querySelectorAll('script:not([src])')).filter(script => {
             // Only re-execute scripts that contain actual code
             return script.textContent && script.textContent.trim().length > 0;
           });
 
-          if (scripts.length === 0) {
-            console.log('[ProductInfo] No inline scripts to re-execute');
-            return;
+          if (scripts.length > 0) {
+            console.log(`[ProductInfo] Re-executing ${scripts.length} inline script(s)`);
+
+            scripts.forEach((script, index) => {
+              try {
+                // Create a new script element to force execution
+                const newScript = document.createElement('script');
+                newScript.type = 'text/javascript';
+                newScript.textContent = script.textContent;
+                
+                // Insert before removing old one to maintain execution context
+                script.parentNode.insertBefore(newScript, script);
+                script.remove();
+                
+                console.log(`[ProductInfo] Script ${index + 1} re-executed`);
+              } catch (e) {
+                console.error(`[ProductInfo] Error re-executing inline script ${index + 1}:`, e);
+              }
+            });
           }
-
-          console.log(`[ProductInfo] Re-executing ${scripts.length} inline script(s)`);
-
-          scripts.forEach((script, index) => {
-            try {
-              // Create a new script element to force execution
-              const newScript = document.createElement('script');
-              newScript.type = 'text/javascript';
-              newScript.textContent = script.textContent;
-              
-              // Insert before removing old one to maintain execution context
-              script.parentNode.insertBefore(newScript, script);
-              script.remove();
-              
-              console.log(`[ProductInfo] Script ${index + 1} re-executed`);
-            } catch (e) {
-              console.error(`[ProductInfo] Error re-executing inline script ${index + 1}:`, e);
-            }
-          });
 
           // After scripts are re-executed, verify dropdowns are initialized
           setTimeout(() => {
@@ -389,6 +390,46 @@ if (!customElements.get('product-info')) {
             Wishlistr.reposition();
           }
         }, 100);
+      }
+
+      initializeProductDetailsDropdowns() {
+        // Directly initialize product-page-details dropdowns
+        // This is called to ensure they work, separate from inline script execution
+        const headers = this.querySelectorAll('.product-page-details-list_header');
+        
+        if (headers.length === 0) {
+          console.log('[ProductInfo] No dropdown headers found');
+          return;
+        }
+
+        console.log(`[ProductInfo] Initializing ${headers.length} dropdown header(s)`);
+
+        headers.forEach((header, index) => {
+          // Remove any existing listeners by cloning
+          const newHeader = header.cloneNode(true);
+          header.replaceWith(newHeader);
+
+          // Add click listener to the new header
+          newHeader.addEventListener('click', function(e) {
+            e.preventDefault();
+            const body = this.nextElementSibling;
+            
+            if (!body) {
+              console.warn('[ProductInfo] No body element found after header');
+              return;
+            }
+
+            const isExpanded = this.classList.toggle('active');
+
+            if (isExpanded) {
+              body.style.maxHeight = body.scrollHeight + 'px';
+              console.log(`[ProductInfo] Dropdown ${index + 1} expanded`);
+            } else {
+              body.style.maxHeight = '0';
+              console.log(`[ProductInfo] Dropdown ${index + 1} collapsed`);
+            }
+          });
+        });
       }
 
       updateVariantInputs(variantId) {
