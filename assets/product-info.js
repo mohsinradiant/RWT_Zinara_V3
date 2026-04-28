@@ -288,9 +288,6 @@ if (!customElements.get('product-info')) {
           // Variant selects custom element will auto-initialize on connectedCallback
         }
 
-        // Re-initialize product-page-details dropdowns
-        this.initializeProductDetailsDropdowns();
-
         // Re-initialize all inline scripts within the section
         this.reInitializeInlineScripts();
 
