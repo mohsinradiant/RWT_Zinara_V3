@@ -203,11 +203,13 @@
                 <div id="overlay" style="display:none;"></div>
 
                 <script>
-                  document.addEventListener('DOMContentLoaded', function () {
+                  (function () {
+                    function initPriceBreakdown() {
                     const container = document.querySelector('.price-breakdown-container');
                     const popup = document.querySelector('.price-breakdown-popup');
                     const closeBtn = document.querySelector('.price-breakdown-close-btn');
                     const overlay = document.getElementById('overlay');
+                    if (!container || !popup) return;
 
                     function extractPopupData() {
                       const items = [];
