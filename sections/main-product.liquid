@@ -416,34 +416,42 @@
                     <button class="toggle-btn-desc">Read more</button>
                   </div>
                   <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                      const description = document.querySelector('.full-text');
-                      const truncated = document.querySelector('.truncated-text');
-                      const button = document.querySelector('.toggle-btn-desc');
+                    (function () {
+                      function initDescriptionToggle() {
+                        const description = document.querySelector('.full-text');
+                        const truncated = document.querySelector('.truncated-text');
+                        const button = document.querySelector('.toggle-btn-desc');
+                        if (!description || !button) return;
 
-                      if (window.innerWidth < 756 && description) {
-                        let words = description.innerText.split(' ');
-                        if (words.length > 5) {
-                          truncated.innerText = words.slice(0, 5).join(' ') + '...';
-                          description.style.display = 'none'; // Ensure full text is hidden initially
-                        } else {
-                          truncated.innerText = description.innerText;
-                          button.style.display = 'none'; // Hide button if text is already short
+                        if (window.innerWidth < 756) {
+                          let words = description.innerText.split(' ');
+                          if (words.length > 5) {
+                            truncated.innerText = words.slice(0, 5).join(' ') + '...';
+                            description.style.display = 'none';
+                          } else {
+                            truncated.innerText = description.innerText;
+                            button.style.display = 'none';
+                          }
                         }
+
+                        button.addEventListener('click', function () {
+                          if (description.style.display === 'none' || description.style.display === '') {
+                            description.style.display = 'inline';
+                            truncated.style.display = 'none';
+                            button.innerText = 'Read Less';
+                          } else {
+                            description.style.display = 'none';
+                            truncated.style.display = 'inline';
+                            button.innerText = 'Read more';
+                          }
+                        });
                       }
-
-                      button.addEventListener('click', function () {
-                        if (description.style.display === 'none' || description.style.display === '') {
-                          description.style.display = 'inline';
-                          truncated.style.display = 'none';
-                          button.innerText = 'Read Less';
-                        } else {
-                          description.style.display = 'none';
-                          truncated.style.display = 'inline';
-                          button.innerText = 'Read more';
-                        }
-                      });
-                    });
+                      if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initDescriptionToggle);
+                      } else {
+                        initDescriptionToggle();
+                      }
+                    })();
                   </script>
                 {%- endif -%}
               {%- when 'sku' -%}
