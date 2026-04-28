@@ -2229,40 +2229,6 @@ document.addEventListener('DOMContentLoaded', () => {
 {% endif %}
 
 <script>
-  (function () {
-    let lastUrl = window.location.href;
-
-    const reloadOnVariantChange = () => {
-      const currentUrl = window.location.href;
-
-      if (currentUrl !== lastUrl) {
-        console.log('URL changed, reloading...');
-        lastUrl = currentUrl;
-        sessionStorage.removeItem('redirectedToAvailableVariant'); // ✅ Remove session flag after manual change
-        window.location.href = currentUrl.includes('?')
-          ? currentUrl + '&manual_variant_change=true'
-          : currentUrl + '?manual_variant_change=true'; // ✅ Add flag to prevent automatic redirection
-      }
-    };
-
-    // Listen for Shopify's history changes
-    const originalPushState = history.pushState;
-    const originalReplaceState = history.replaceState;
-
-    history.pushState = function (...args) {
-      originalPushState.apply(this, args);
-      reloadOnVariantChange();
-    };
-
-    history.replaceState = function (...args) {
-      originalReplaceState.apply(this, args);
-      reloadOnVariantChange();
-    };
-
-    window.addEventListener('popstate', reloadOnVariantChange); // ✅ Handles back/forward button
-  })();
-</script>
-<script>
   window.product = {{ product | json }};
 </script>
 <script>
