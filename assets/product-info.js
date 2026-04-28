@@ -165,41 +165,64 @@ if (!customElements.get('product-info')) {
         return (html) => {
           const variant = this.getSelectedVariant(html);
 
-          this.pickupAvailability?.update(variant);
-          this.updateOptionValues(html);
           this.updateURL(productUrl, variant?.id);
-          this.updateVariantInputs(variant?.id);
 
           if (!variant) {
             this.setUnavailable();
             return;
           }
 
-          this.updateMedia(html, variant?.featured_media?.id);
+          // Get the new product-info section from the fetched HTML
+          const newProductInfoSection = html.querySelector(`section[id^="ProductInfo-"]`);
+          const currentProductInfoSection = this.querySelector(`section[id^="ProductInfo-"]`);
 
-          const updateSourceFromDestination = (id, shouldHide = (source) => false) => {
-            const source = html.getElementById(`${id}-${this.sectionId}`);
-            const destination = this.querySelector(`#${id}-${this.dataset.section}`);
-            if (source && destination) {
-              destination.innerHTML = source.innerHTML;
-              destination.classList.toggle('hidden', shouldHide(source));
-            }
-          };
+          if (newProductInfoSection && currentProductInfoSection) {
+            // Update the entire ProductInfo section with all its content and snippets
+            currentProductInfoSection.innerHTML = newProductInfoSection.innerHTML;
 
-          updateSourceFromDestination('price');
-          updateSourceFromDestination('Sku', ({ classList }) => classList.contains('hidden'));
-          updateSourceFromDestination('Inventory', ({ innerText }) => innerText === '');
-          updateSourceFromDestination('Volume');
-          updateSourceFromDestination('Price-Per-Item', ({ classList }) => classList.contains('hidden'));
+            // Re-initialize variant inputs
+            this.updateVariantInputs(variant?.id);
 
-          this.updateQuantityRules(this.sectionId, html);
-          this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
-          this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
+            // Re-initialize pickup availability if it exists
+            this.pickupAvailability?.update(variant);
 
-          this.productForm?.toggleSubmitButton(
-            html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
-            window.variantStrings.soldOut
-          );
+            // Re-initialize scripts that depend on the new content
+            this.reinitializeProductInfoScripts();
+
+            // Update media gallery if it exists in both old and new sections
+            this.updateMedia(html, variant?.featured_media?.id);
+          } else {
+            // Fallback to old method if structure changed
+            this.pickupAvailability?.update(variant);
+            this.updateOptionValues(html);
+            this.updateVariantInputs(variant?.id);
+
+            this.updateMedia(html, variant?.featured_media?.id);
+
+            const updateSourceFromDestination = (id, shouldHide = (source) => false) => {
+              const source = html.getElementById(`${id}-${this.sectionId}`);
+              const destination = this.querySelector(`#${id}-${this.dataset.section}`);
+              if (source && destination) {
+                destination.innerHTML = source.innerHTML;
+                destination.classList.toggle('hidden', shouldHide(source));
+              }
+            };
+
+            updateSourceFromDestination('price');
+            updateSourceFromDestination('Sku', ({ classList }) => classList.contains('hidden'));
+            updateSourceFromDestination('Inventory', ({ innerText }) => innerText === '');
+            updateSourceFromDestination('Volume');
+            updateSourceFromDestination('Price-Per-Item', ({ classList }) => classList.contains('hidden'));
+
+            this.updateQuantityRules(this.sectionId, html);
+            this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
+            this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
+
+            this.productForm?.toggleSubmitButton(
+              html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
+              window.variantStrings.soldOut
+            );
+          }
 
           publish(PUB_SUB_EVENTS.variantChange, {
             data: {
@@ -209,6 +232,32 @@ if (!customElements.get('product-info')) {
             },
           });
         };
+      }
+
+      reinitializeProductInfoScripts() {
+        // Re-initialize Shopify payment buttons if they exist
+        if (window?.Shopify?.PaymentButton?.init) {
+          window.Shopify.PaymentButton.init();
+        }
+
+        // Re-initialize 3D product model viewer if it exists
+        if (window?.ProductModel?.loadShopifyXR) {
+          window.ProductModel.loadShopifyXR();
+        }
+
+        // Dispatch a custom event for any other components that need to reinitialize
+        this.dispatchEvent(new CustomEvent('productinfo:updated', { bubbles: true, detail: { section: this } }));
+
+        // Re-initialize accordion interactions if they exist
+        this.querySelectorAll('details').forEach((details) => {
+          details.addEventListener('toggle', function () {
+            if (this.open) {
+              this.classList.add('details-open');
+            } else {
+              this.classList.remove('details-open');
+            }
+          });
+        });
       }
 
       updateVariantInputs(variantId) {
