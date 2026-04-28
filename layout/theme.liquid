@@ -1123,7 +1123,7 @@ function getProductPagePincodes() {
             <h3>How to measure your ring size</h3>
             <div class="video-container">
               {% assign video_obj = product.metafields.custom.size_chart_video.value %}
-              {{ video_obj | video_tag: width: '100%', height: 300, controls: true }}
+              {{ video_obj | video_tag: controls: true }}
             </div>
           </div>
         {% endif %}
@@ -1765,10 +1765,17 @@ function getProductPagePincodes() {
       .video-container {
         position: relative;
         width: 100%;
-        padding-bottom: 56.25%;
-        height: 0;
         overflow: hidden;
         border-radius: 8px;
+        background-color: #000;
+      }
+
+      .video-container video {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: contain;
       }
 
       .video-container iframe {
