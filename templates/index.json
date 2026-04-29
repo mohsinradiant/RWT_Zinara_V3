@@ -990,6 +990,7 @@
         },
         "slide_FAhTdM": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -998,6 +999,7 @@
         },
         "slide_zXjhmx": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1006,6 +1008,7 @@
         },
         "slide_8UfFQc": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1014,6 +1017,7 @@
         },
         "slide_ptkqJx": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1022,6 +1026,7 @@
         },
         "slide_38jMmX": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1030,6 +1035,7 @@
         },
         "slide_zATWiF": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1038,6 +1044,7 @@
         },
         "slide_EAawRj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear last",
@@ -1420,11 +1427,11 @@
     "home_shop_by_occasion_WePWCL",
     "home_benefits_pbKiTY",
     "home_shop_by_category_XPFUnn",
-    "home_trendsetters_slider_7hfRrg",
     "home_own_design_WDng9w",
     "home_tryathome_UAw34q",
     "home_testimonials_iX3QWY",
     "featured_in_home_8zRT3B",
+    "home_trendsetters_slider_7hfRrg",
     "home_about_us_2_EmErTz",
     "home_about_hDMerC",
     "collapsible_content_AU8NGL"
