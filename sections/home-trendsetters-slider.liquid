@@ -78,6 +78,10 @@
             z-index: 1;
           }
 
+                .swiper-slide {
+                  position: relative;
+                }
+
                 .swiper-slide img {
                   width: 100%;
                   display: block;
@@ -152,8 +156,10 @@
   document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.trend-carousel-{{ section.id }}', {
       loop: true,
+      loopMinimumSlides: 2,
       centeredSlides: true,
       grabCursor: true,
+      initialSlide: 0,
 
       autoplay: {
         delay: 1800,
@@ -167,7 +173,7 @@
 
       breakpoints: {
         0: {
-          slidesPerView: 1.6, // center + side peek
+          slidesPerView: 1.6,
           spaceBetween: 6,
         },
         768: {
@@ -179,14 +185,18 @@
       pagination: {
         el: '.trend-pagination-{{ section.id }}',
         clickable: true,
+        type: 'bullets',
       },
 
       on: {
+        init: function() {
+          this.slideTo(0, 0, false);
+        },
         slideChange: function () {
           const bullets = document.querySelectorAll('.trend-pagination-{{ section.id }} .swiper-pagination-bullet');
           bullets.forEach((b) => {
             b.style.animation = 'none';
-            b.offsetHeight; // force reflow
+            b.offsetHeight;
             b.style.animation = null;
           });
         },
