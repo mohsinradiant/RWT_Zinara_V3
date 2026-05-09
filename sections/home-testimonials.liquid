@@ -202,6 +202,8 @@
 
   .testimonial-name_2_lower {
     flex-shrink: 0;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .testimonial-container .testimonial-name img {
@@ -233,6 +235,10 @@
     text-underline-offset: 3px;
     color: #000;
     font-size: 1.5rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .testimonial-container .testimonial-name p {
