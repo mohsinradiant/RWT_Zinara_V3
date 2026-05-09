@@ -397,15 +397,8 @@
       updateCarousel();
     }
 
-    leftArrow.addEventListener('click', () => {
-      moveLeft();
-      resetAutoplay();
-    });
-
-    rightArrow.addEventListener('click', () => {
-      moveRight();
-      resetAutoplay();
-    });
+    leftArrow.addEventListener('click', moveLeft);
+    rightArrow.addEventListener('click', moveRight);
 
     window.addEventListener('resize', () => {
       testimonialCarousel.style.transition = 'none'; // Disable animation during resize
@@ -414,14 +407,6 @@
 
     // Initial setup
     updateCarousel();
-
-    // Autoplay
-    let autoplay = setInterval(moveRight, autoplayInterval);
-
-    function resetAutoplay() {
-      clearInterval(autoplay);
-      autoplay = setInterval(moveRight, autoplayInterval);
-    }
 
     // --- Touch Swipe Support ---
     let touchStartX = 0;
@@ -438,11 +423,10 @@
     testimonialCarouselContainer.addEventListener('touchend', () => {
       const swipeDistance = touchStartX - touchEndX;
       if (swipeDistance > 50) {
-        moveRight(); // Swipe left → move right
+        moveRight();
       } else if (swipeDistance < -50) {
-        moveLeft(); // Swipe right → move left
+        moveLeft();
       }
-      resetAutoplay();
     });
 
     // --- Mouse Drag Support ---
