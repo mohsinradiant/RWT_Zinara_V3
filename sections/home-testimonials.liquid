@@ -163,27 +163,11 @@
       border: solid 1px #f0ebe1;
     }
 
-    .testimonial-carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(0);
-      border: none;
-      cursor: pointer;
-      background: transparent;
-      z-index: 10;
-    }
-
-    .testimonial-carousel-arrow img {
-      width: 57px;
-      height: auto;
-    }
-
-    .left-arrow {
-      left: 40px;
-    }
-
-    .right-arrow {
-      right: 40px;
+    /* Override trendsetters global swiper-slide dimming/scaling for testimonials */
+    .testimonial-swiper-{{ section.id }} .swiper-slide {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
     }
 
     .testimonial-name {
@@ -312,9 +296,6 @@
 
 <section class="home-testimonials-container">
   <h2 class="page-width section-heading">{{ section.settings.heading }}</h2>
-  <button class="testimonial-carousel-arrow left-arrow testimonial-prev-{{ section.id }}">
-    <img src="https://cdn.shopify.com/s/files/1/0661/8336/4792/files/Expand_Arrow_1_-_Copy.png?v=1744182420">
-  </button>
   <div class="page-width home-testimonials-carousel">
     <div class="swiper testimonial-swiper-{{ section.id }}">
       <div class="swiper-wrapper">
