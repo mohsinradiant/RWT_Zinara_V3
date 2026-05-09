@@ -14,7 +14,7 @@
 .home-featured_in-logos {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 100px;
     will-change: transform;
 }
 
