@@ -12,12 +12,35 @@
     "slideshow_iE63EG": {
       "type": "slideshow",
       "blocks": {
+        "slide_gMDJpj": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/valentine_web_banner_with_vogue.png",
+            "image_alt": "",
+            "image_mobile": "shopify://shop_images/valentines_mobile_banner_with_vogue.png",
+            "image_mobile_alt": "",
+            "image_aspect_ratio": true,
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "shopify://collections/18-kt-gold-vermeil",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        },
         "slide_ki3k4R": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/home_web_banner_658514da-6fe6-40b2-aca5-f74c98439cc4.png",
+            "image": "shopify://shop_images/desktop_web_banner_prism3d.png",
             "image_alt": "",
-            "image_mobile": "shopify://shop_images/mobile_web_banner_518c1c1c-f92f-4c9d-a95d-77aba2fe116d.png",
+            "image_mobile": "shopify://shop_images/mobile_web_banner_prism3d.png",
             "image_mobile_alt": "",
             "image_aspect_ratio": true,
             "heading": "Image slide",
@@ -37,9 +60,9 @@
         "slide_dJ3FVC": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/web_2_apr26.png",
+            "image": "shopify://shop_images/desktop_web_banner_twostone.png",
             "image_alt": "",
-            "image_mobile": "shopify://shop_images/mob_2_apr26.png",
+            "image_mobile": "shopify://shop_images/mobile_banner_twostone.png",
             "image_mobile_alt": "",
             "image_aspect_ratio": true,
             "heading": "Image slide",
@@ -47,29 +70,6 @@
             "subheading": "",
             "button_label": "",
             "link": "shopify://collections/9kt-14kt-fine-gold",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-1",
-            "text_alignment_mobile": "center"
-          }
-        },
-        "slide_gMDJpj": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/valentine_web_banner_with_vogue.png",
-            "image_alt": "",
-            "image_mobile": "shopify://shop_images/valentines_mobile_banner_with_vogue.png",
-            "image_mobile_alt": "",
-            "image_aspect_ratio": true,
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "shopify://collections/18-kt-gold-vermeil",
             "button_style_secondary": false,
             "box_align": "middle-center",
             "show_text_box": true,
@@ -125,9 +125,9 @@
         }
       },
       "block_order": [
+        "slide_gMDJpj",
         "slide_ki3k4R",
         "slide_dJ3FVC",
-        "slide_gMDJpj",
         "slide_HHiCAy",
         "slide_aDn7ip"
       ],
@@ -339,32 +339,33 @@
         "collection_MwMYmm": {
           "type": "collection",
           "settings": {
-            "collection_title": "@everyday.elegance",
+            "collection_title": "@siesta",
             "collection_link": "shopify://collections",
-            "collection_desktop_image": "shopify://shop_images/Image_w-full_4.png",
-            "collection_mobile_image": "shopify://shop_images/Image_w-full_1.png"
+            "collection_desktop_image": "shopify://shop_images/summer_card.png",
+            "collection_mobile_image": "shopify://shop_images/summer_card.png"
           }
         },
         "collection_ppTXTX": {
           "type": "collection",
           "settings": {
-            "collection_title": "@everyday.elegance",
+            "collection_title": "@double.take",
             "collection_link": "shopify://collections",
-            "collection_desktop_image": "shopify://shop_images/Image_w-full.png",
-            "collection_mobile_image": "shopify://shop_images/Image_w-full.png"
+            "collection_desktop_image": "shopify://shop_images/twostone_card.png",
+            "collection_mobile_image": "shopify://shop_images/twostone_card.png"
           }
         },
         "collection_GtLAQ4": {
           "type": "collection",
           "settings": {
-            "collection_title": "@everyday.elegance",
+            "collection_title": "@prism.3d",
             "collection_link": "shopify://collections",
-            "collection_desktop_image": "shopify://shop_images/Image_w-full.png",
-            "collection_mobile_image": "shopify://shop_images/Image_w-full.png"
+            "collection_desktop_image": "shopify://shop_images/prism3d_card.png",
+            "collection_mobile_image": "shopify://shop_images/prism3d_card.png"
           }
         },
         "collection_ELWd6B": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection_title": "@everyday.elegance",
             "collection_link": "shopify://collections",
@@ -374,6 +375,7 @@
         },
         "collection_E7k7KW": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection_title": "@everyday.elegance",
             "collection_link": "shopify://collections",
@@ -383,6 +385,7 @@
         },
         "collection_gGNAtf": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection_title": "@everyday.elegance",
             "collection_link": "shopify://collections",
@@ -392,6 +395,7 @@
         },
         "collection_HC4Jdt": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection_title": "@everyday.elegance",
             "collection_link": "shopify://collections",
@@ -401,11 +405,20 @@
         },
         "collection_H8kdk6": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection_title": "@everyday.elegance",
             "collection_link": "shopify://collections",
             "collection_desktop_image": "shopify://shop_images/Image_w-full_4.png",
             "collection_mobile_image": "shopify://shop_images/Image_w-full_1.png"
+          }
+        },
+        "collection_EkwFGq": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection_title": "",
+            "collection_link": ""
           }
         }
       },
@@ -417,7 +430,8 @@
         "collection_E7k7KW",
         "collection_gGNAtf",
         "collection_HC4Jdt",
-        "collection_H8kdk6"
+        "collection_H8kdk6",
+        "collection_EkwFGq"
       ],
       "name": "Home Zinara Collections",
       "settings": {
@@ -433,7 +447,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all-products",
+        "collection": "bestsellers",
         "products_to_show": 10,
         "columns_desktop": 4,
         "full_width": false,
@@ -1074,32 +1088,33 @@
     "home_trendsetters_slider_7hfRrg": {
       "type": "home-trendsetters-slider",
       "blocks": {
-        "slide_NnUr4E": {
+        "slide_FAhTdM": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/trendsetter-2.jpg",
-            "text": "Daily Wear first",
-            "url": "shopify://collections/18-kt-gold-vermeil"
+            "image": "shopify://shop_images/kriti_vij_3.jpg",
+            "text": "Kriti Vij in Majestic Gleam Solitaire Ring",
+            "url": "shopify://products/majestic-gleam-solitaire-ring"
           }
         },
         "slide_VyyWFd": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/trendsetter-2.jpg",
-            "text": "Daily Wear",
-            "url": "shopify://collections/18-kt-gold-vermeil"
+            "image": "shopify://shop_images/karan_sareen_1.jpg",
+            "text": "Karan Sareen in Velvet Radiance Studs",
+            "url": "shopify://products/velvet-radiance-studs"
           }
         },
-        "slide_FAhTdM": {
+        "slide_NnUr4E": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/trendsetter-2.jpg",
-            "text": "Daily Wear",
-            "url": "shopify://collections/18-kt-gold-vermeil"
+            "image": "shopify://shop_images/kriti_vij_2.jpg",
+            "text": "Kriti Vij in Radiance Drop Earrings",
+            "url": "shopify://products/radiance-drop-earrings"
           }
         },
         "slide_zXjhmx": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1108,6 +1123,7 @@
         },
         "slide_8UfFQc": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1116,6 +1132,7 @@
         },
         "slide_ptkqJx": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1124,6 +1141,7 @@
         },
         "slide_38jMmX": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1132,6 +1150,7 @@
         },
         "slide_zATWiF": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear",
@@ -1140,6 +1159,7 @@
         },
         "slide_EAawRj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/trendsetter-2.jpg",
             "text": "Daily Wear last",
@@ -1148,9 +1168,9 @@
         }
       },
       "block_order": [
-        "slide_NnUr4E",
-        "slide_VyyWFd",
         "slide_FAhTdM",
+        "slide_VyyWFd",
+        "slide_NnUr4E",
         "slide_zXjhmx",
         "slide_8UfFQc",
         "slide_ptkqJx",
@@ -1203,26 +1223,27 @@
         "image_picker_Jw3Xa6": {
           "type": "image_picker",
           "settings": {
-            "image": "shopify://shop_images/VOGUE.png",
+            "image": "shopify://shop_images/vogue_png.svg",
             "alt_text": "featuredinlogo Image"
           }
         },
         "image_picker_bqytnc": {
           "type": "image_picker",
           "settings": {
-            "image": "shopify://shop_images/ELLE.png",
+            "image": "shopify://shop_images/ht_logo_png.png",
             "alt_text": "featuredinlogo Image"
           }
         },
         "image_picker_Qdatk9": {
           "type": "image_picker",
           "settings": {
-            "image": "shopify://shop_images/GQ.png",
+            "image": "shopify://shop_images/outlook_money_png.png",
             "alt_text": "featuredinlogo Image"
           }
         },
         "image_picker_EGMUNW": {
           "type": "image_picker",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VOGUE.png",
             "alt_text": "featuredinlogo Image"
@@ -1230,6 +1251,7 @@
         },
         "image_picker_iiUJnc": {
           "type": "image_picker",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/ELLE.png",
             "alt_text": "featuredinlogo Image"
@@ -1237,6 +1259,7 @@
         },
         "image_picker_LyB3xJ": {
           "type": "image_picker",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/GQ.png",
             "alt_text": "featuredinlogo Image"
@@ -1244,6 +1267,7 @@
         },
         "image_picker_WA8GDn": {
           "type": "image_picker",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VOGUE.png",
             "alt_text": "featuredinlogo Image"
@@ -1251,6 +1275,7 @@
         },
         "image_picker_bnjLcY": {
           "type": "image_picker",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/ELLE.png",
             "alt_text": "featuredinlogo Image"
@@ -1258,6 +1283,7 @@
         },
         "image_picker_xDfKhr": {
           "type": "image_picker",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/GQ.png",
             "alt_text": "featuredinlogo Image"
