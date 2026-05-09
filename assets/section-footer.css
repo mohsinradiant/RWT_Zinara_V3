@@ -210,8 +210,8 @@
 .has_platform_heading {
   margin-bottom: 15px;
   margin-top: 30px;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
   font-family: var(--font-heading-family);
   color: #712242;
 
