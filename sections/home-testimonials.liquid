@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
   .review-bottom-sheet {
     position: fixed;
@@ -42,6 +41,7 @@
     bottom: 0;
   }
 
+  /* drag indicator */
   .sheet-drag {
     width: 40px;
     height: 4px;
@@ -50,6 +50,7 @@
     margin: 0 auto 12px;
   }
 
+  /* close */
   .sheet-close {
     position: absolute;
     right: 15px;
@@ -60,10 +61,12 @@
     cursor: pointer;
   }
 
+  /* card */
   .sheet-card {
     margin-top: 10px;
   }
 
+  /* header */
   .sheet-header {
     display: flex;
     gap: 12px;
@@ -93,6 +96,7 @@
     width: 90px;
   }
 
+  /* review text */
   .sheet-review-text {
     font-size: 1.4rem;
     line-height: 1.7;
@@ -101,20 +105,19 @@
     font-family: 'Libre Baskerville';
   }
 
+  /* product link */
   .sheet-product {
     display: inline-block;
     font-size: 1.3rem;
     text-decoration: underline;
     color: #000;
   }
-
   .customer_name_testimonial {
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 600 !important;
     font-size: 1.5rem !important;
     margin: 0 !important;
   }
-
   .home-testimonials-container {
     position: relative;
     overflow: hidden;
@@ -122,7 +125,6 @@
     margin-top: 50px;
     letter-spacing: 0;
   }
-
   .testimonial-name_2-container {
     display: flex;
     flex-direction: column;
@@ -130,24 +132,21 @@
     height: 100%;
     padding: 17px;
   }
-
   .home-testimonials-carousel {
+    /* padding: 0;
+    max-width: calc(var(--page-width) - 10rem); */
     position: relative;
     overflow: hidden;
   }
-
-  /* Swiper container height drives the entire height chain */
-  .testimonial-swiper-{{ section.id }} {
+  .home-testimonials-carousel-parent {
+    display: flex;
+    gap: 17px;
+    transition: transform 0.5s ease-in-out;
+    align-items: start;
     height: 210px;
   }
-
-  /* Slide width; height is 100% of the swiper container (210px) via Swiper default */
-  .testimonial-swiper-{{ section.id }} .swiper-slide {
-    width: 410px;
-  }
-
   .testimonial-container {
-    min-width: 0;
+    min-width: 410px;
     height: 100%;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     display: flex;
@@ -158,7 +157,14 @@
     overflow: hidden;
     border: solid 1px #f0ebe1;
   }
-
+  /* .testimonial-container.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .testimonial-container:not(.active) {
+    opacity: 0.1;
+    transform: scale(0.9);
+  } */
   .testimonial-carousel-arrow {
     position: absolute;
     top: 50%;
@@ -191,7 +197,6 @@
     height: 100%;
     aspect-ratio: 117/174;
   }
-
   .testimonial-name_2 {
     display: flex;
     flex-direction: column;
@@ -200,20 +205,16 @@
     height: 100%;
   }
 
-  .testimonial-container .testimonial-name img {
+  .testimonial-name img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     pointer-events: none;
   }
-
-  .testimonial-name_2-container .testimonial-name_2 img {
+  .testimonial-name_2 img {
     width: 44%;
-    height: auto;
-    object-fit: initial;
     margin-bottom: 15px;
   }
-
   .testimonial-name_2 a {
     color: #1a1a1a;
     font-weight: 700;
@@ -223,14 +224,12 @@
     margin-bottom: 10px;
     text-underline-offset: 3px;
   }
-
   .customer_product_testimonial {
     text-decoration: underline;
     text-underline-offset: 3px;
     color: #000;
     font-size: 1.5rem;
   }
-
   .testimonial-container .testimonial-name p {
     font-size: 1.4rem;
     font-weight: 400;
@@ -238,7 +237,6 @@
     color: #000;
     font-family: var(--font-heading-family);
   }
-
   .testimonial-container p {
     color: #000;
     font-weight: 400;
@@ -247,110 +245,99 @@
     font-family: 'Libre Baskerville';
     line-height: 1.8rem;
   }
-
   .read-more-btn {
     cursor: pointer !important;
   }
-
   @media (max-width: 756px) {
-    .testimonial-swiper-{{ section.id }} .swiper-slide {
-      width: calc(100vw - 70px);
+    .home-testimonials-carousel-parent {
+      height: fit-content;
     }
-
-    .testimonial-name_2-container .testimonial-name_2 img {
+    .testimonial-name_2 img {
       width: 55%;
-      height: auto;
-      object-fit: initial;
       margin-bottom: 10px;
     }
-
     .testimonial-name_2 a {
       font-size: 1.1rem;
       text-underline-offset: 1px;
       font-weight: 600;
     }
-
     .home-testimonials-container {
       margin-top: 50px;
     }
-
     .testimonial-name_2_lower .customer_name_testimonial {
       font-size: 1.2rem !important;
     }
-
     .customer_product_testimonial {
       font-size: 1.2rem;
       margin-top: -1px;
       display: flex;
     }
+    
   }
-
-  @media (max-width: 380px) {
-    .customer_product_testimonial,
-    .testimonial-name_2_lower .customer_name_testimonial {
-      font-size: 1rem !important;
-    }
+  @media(max-width:380px){
+  .customer_product_testimonial, .testimonial-name_2_lower .customer_name_testimonial{
+    font-size: 1rem !important;
   }
+}
 </style>
 
 <section class="home-testimonials-container">
   <h2 class="page-width section-heading">{{ section.settings.heading }}</h2>
-  <button class="testimonial-carousel-arrow left-arrow testimonial-prev-{{ section.id }}">
+  <button class="testimonial-carousel-arrow left-arrow">
     <img src="https://cdn.shopify.com/s/files/1/0661/8336/4792/files/Expand_Arrow_1_-_Copy.png?v=1744182420">
   </button>
   <div class="page-width home-testimonials-carousel">
-    <div class="swiper testimonial-swiper-{{ section.id }}">
-      <div class="swiper-wrapper">
-        {% for block in section.blocks %}
-          <div class="swiper-slide">
-            <div class="testimonial-container">
-              <div class="testimonial-name">
-                <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.alt_text }}">
-              </div>
-              <div class="testimonial-name_2-container">
-                <div class="testimonial-name_2">
-                  <img src="https://cdn.shopify.com/s/files/1/0661/8336/4792/files/Div_flex_1.png?v=1778014538">
-                  <p>{{ block.settings.review | truncate: 49 }}</p>
-                  <a
-                    class="read-more-btn"
-                    data-review="{{ block.settings.review | escape }}"
-                    data-name="{{ block.settings.customer_name }}"
-                    data-product="{{ block.settings.customer_product_text }}"
-                    data-product-link="{{ block.settings.customer_product_link }}"
-                    data-image="{{ block.settings.image | image_url: width: 800 }}"
-                  >
-                    {{ block.settings.link_text }}
-                  </a>
-                </div>
-                <div class="testimonial-name_2_lower">
-                  <p class="customer_name_testimonial">{{ block.settings.customer_name }}</p>
-                  <a href="{{ block.settings.customer_product_link }}" class="customer_product_testimonial">
-                    {{- block.settings.customer_product_text -}}
-                  </a>
-                </div>
-              </div>
+    <div class="home-testimonials-carousel-parent">
+      {% for block in section.blocks %}
+        <div class="testimonial-container">
+          <div class="testimonial-name">
+            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.alt_text }}">
+          </div>
+          <div class="testimonial-name_2-container">
+            <div class="testimonial-name_2">
+              <img src="https://cdn.shopify.com/s/files/1/0661/8336/4792/files/Div_flex_1.png?v=1778014538">
+              <p>{{ block.settings.review | truncate: 49 }}</p>
+              <a
+                class="read-more-btn"
+                data-review="{{ block.settings.review | escape }}"
+                data-name="{{ block.settings.customer_name }}"
+                data-product="{{ block.settings.customer_product_text }}"
+                data-product-link="{{ block.settings.customer_product_link }}"
+                data-image="{{ block.settings.image | image_url: width: 800 }}"
+              >
+                {{ block.settings.link_text }}
+              </a>
+            </div>
+            <div class="testimonial-name_2_lower">
+              <p class="customer_name_testimonial">{{ block.settings.customer_name }}</p>
+              <a href="{{ block.settings.customer_product_link }}" class="customer_product_testimonial">
+                {{- block.settings.customer_product_text -}}
+              </a>
             </div>
           </div>
-        {% endfor %}
-      </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
-  <button class="testimonial-carousel-arrow right-arrow testimonial-next-{{ section.id }}">
+  <button class="testimonial-carousel-arrow right-arrow">
     <img
       style="transform: rotate(180deg)"
       src="https://cdn.shopify.com/s/files/1/0661/8336/4792/files/Expand_Arrow_1_-_Copy.png?v=1744182420"
     >
   </button>
 </section>
-
 <div class="review-bottom-sheet">
   <div class="sheet-overlay"></div>
+
   <div class="sheet-content">
     <div class="sheet-drag"></div>
+
     <button class="sheet-close">×</button>
+
     <div class="sheet-card">
       <div class="sheet-header">
         <img class="sheet-user-img" src="" alt="">
+
         <div class="sheet-user-info">
           <p class="sheet-name"></p>
           <img
@@ -359,37 +346,104 @@
           >
         </div>
       </div>
+
       <p class="sheet-review-text"></p>
+
       <a class="sheet-product" target="_blank"></a>
     </div>
   </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  (function () {
-    new Swiper('.testimonial-swiper-{{ section.id }}', {
-      loop: true,
-      slidesPerView: 'auto',
-      spaceBetween: 17,
-      speed: 400,
-      grabCursor: true,
-      touchRatio: 1,
-      touchAngle: 45,
-      resistance: true,
-      resistanceRatio: 0.85,
-      navigation: {
-        prevEl: '.testimonial-prev-{{ section.id }}',
-        nextEl: '.testimonial-next-{{ section.id }}',
-      },
-      breakpoints: {
-        0: { spaceBetween: 12 },
-        756: { spaceBetween: 17 },
-      },
-    });
-  })();
+  document.addEventListener('DOMContentLoaded', () => {
+    const testimonialCarouselContainer = document.querySelector('.home-testimonials-carousel');
+    const testimonialCarousel = document.querySelector('.home-testimonials-carousel-parent');
+    const leftArrow = document.querySelector('.testimonial-carousel-arrow.left-arrow');
+    const rightArrow = document.querySelector('.testimonial-carousel-arrow.right-arrow');
 
-  // Bottom sheet — event delegation so cloned slides work too
+    // Clone slides for infinite loop (prepend + append one full set each)
+    const origSlides = Array.from(testimonialCarousel.querySelectorAll('.testimonial-container'));
+    const slideCount = origSlides.length;
+    origSlides.forEach(s => testimonialCarousel.appendChild(s.cloneNode(true)));
+    origSlides.slice().reverse().forEach(s =>
+      testimonialCarousel.insertBefore(s.cloneNode(true), testimonialCarousel.firstChild)
+    );
+
+    let currentIndex = slideCount; // start at first original slide
+    const transitionDuration = 500;
+    let isTransitioning = false;
+
+    function getSlideWidth() {
+      const slide = testimonialCarousel.querySelector('.testimonial-container');
+      const style = window.getComputedStyle(slide);
+      let w = slide.offsetWidth + parseInt(style.marginRight) + parseInt(style.marginLeft);
+      if (window.innerWidth < 756) w += 13;
+      return w;
+    }
+
+    function goTo(index, animate) {
+      testimonialCarousel.style.transition = animate ? `transform ${transitionDuration}ms ease-in-out` : 'none';
+      testimonialCarousel.style.transform = `translateX(-${index * getSlideWidth()}px)`;
+    }
+
+    function moveRight() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      goTo(++currentIndex, true);
+      setTimeout(() => {
+        if (currentIndex >= slideCount * 2) {
+          currentIndex -= slideCount;
+          goTo(currentIndex, false);
+        }
+        isTransitioning = false;
+      }, transitionDuration);
+    }
+
+    function moveLeft() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      goTo(--currentIndex, true);
+      setTimeout(() => {
+        if (currentIndex < slideCount) {
+          currentIndex += slideCount;
+          goTo(currentIndex, false);
+        }
+        isTransitioning = false;
+      }, transitionDuration);
+    }
+
+    goTo(currentIndex, false);
+
+    leftArrow.addEventListener('click', moveLeft);
+    rightArrow.addEventListener('click', moveRight);
+
+    window.addEventListener('resize', () => goTo(currentIndex, false));
+
+    // --- Touch Swipe Support ---
+    let touchStartX = 0, touchEndX = 0;
+
+    testimonialCarouselContainer.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    testimonialCarouselContainer.addEventListener('touchmove', (e) => { touchEndX = e.touches[0].clientX; });
+    testimonialCarouselContainer.addEventListener('touchend', () => {
+      const d = touchStartX - touchEndX;
+      if (d > 50) moveRight();
+      else if (d < -50) moveLeft();
+    });
+
+    // --- Mouse Drag Support ---
+    let isDragging = false, startX = 0;
+
+    testimonialCarouselContainer.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX; });
+    testimonialCarouselContainer.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      const d = startX - e.clientX;
+      if (d > 50) moveRight();
+      else if (d < -50) moveLeft();
+      isDragging = false;
+    });
+    testimonialCarouselContainer.addEventListener('mouseleave', () => { isDragging = false; });
+  });
+
+  // Bottom sheet — event delegation so cloned buttons work too
   const bottomSheet = document.querySelector('.review-bottom-sheet');
   const sheetText = document.querySelector('.sheet-review-text');
   const sheetName = document.querySelector('.sheet-name');
