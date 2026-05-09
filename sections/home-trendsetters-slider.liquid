@@ -155,42 +155,21 @@
 
   }
 {% endstylesheet %}
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.trend-carousel-{{ section.id }}', {
-      loop: true,
-      centeredSlides: true,
-      grabCursor: true,
-
-      autoplay: {
-        delay: 1800,
-        disableOnInteraction: false,
-      },
-
-      speed: 400,
-
-      slidesPerView: 5,
-      spaceBetween: 20,
-
-      breakpoints: {
-        0: {
-          slidesPerView: 1.6,
-          spaceBetween: 6,
-        },
-        768: {
-          slidesPerView: 5,
-          spaceBetween: 20,
-        },
-      },
-
-      pagination: {
-        el: '.trend-pagination-{{ section.id }}',
-        clickable: true,
-        type: 'bullets',
-      },
-    });
+  const swiper = new Swiper('.trend-carousel-{{ section.id }}', {
+    loop: true,
+    centeredSlides: true,
+    autoplay: { delay: 1800, disableOnInteraction: false },
+    speed: 400,
+    slidesPerView: 5,
+    spaceBetween: 20,
+    breakpoints: {
+      0: { slidesPerView: 1.6, spaceBetween: 6 },
+      768: { slidesPerView: 5, spaceBetween: 20 },
+    },
+    pagination: { el: '.trend-pagination-{{ section.id }}', type: 'bullets' },
   });
 </script>
 {% schema %}
