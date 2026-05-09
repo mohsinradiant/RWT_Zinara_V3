@@ -160,13 +160,14 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const swiperElement = document.querySelector('.trend-carousel-{{ section.id }}');
-    const slideCount = swiperElement.querySelectorAll('.swiper-slide').length;
+    const actualSlides = swiperElement.querySelectorAll('.swiper-wrapper > .swiper-slide');
+    const slideCount = actualSlides.length;
 
-    new Swiper('.trend-carousel-{{ section.id }}', {
+    const swiper = new Swiper('.trend-carousel-{{ section.id }}', {
       loop: true,
+      loopAdditionalSlides: slideCount + 1,
       centeredSlides: true,
       grabCursor: true,
-      initialSlide: 0,
 
       autoplay: {
         delay: 1800,
@@ -201,24 +202,29 @@
       on: {
         init: function () {
           this.slideTo(0, 0, false);
+          updatePaginationBullets.call(this);
         },
         slideChange: function () {
-          const realIndex = this.realIndex;
-          const bullets = document.querySelectorAll('.trend-pagination-{{ section.id }} .swiper-pagination-bullet');
-          bullets.forEach((b, idx) => {
-            if (idx === realIndex) {
-              b.classList.add('swiper-pagination-bullet-active');
-              b.style.animation = 'none';
-              b.offsetHeight;
-              b.style.animation = null;
-            } else {
-              b.classList.remove('swiper-pagination-bullet-active');
-              b.style.animation = 'none';
-            }
-          });
+          updatePaginationBullets.call(this);
         },
       },
     });
+
+    function updatePaginationBullets() {
+      const realIndex = this.realIndex;
+      const bullets = document.querySelectorAll('.trend-pagination-{{ section.id }} .swiper-pagination-bullet');
+      bullets.forEach((b, idx) => {
+        if (idx === realIndex) {
+          b.classList.add('swiper-pagination-bullet-active');
+          b.style.animation = 'none';
+          b.offsetHeight;
+          b.style.animation = null;
+        } else {
+          b.classList.remove('swiper-pagination-bullet-active');
+          b.style.animation = 'none';
+        }
+      });
+    }
   });
 </script>
 {% schema %}
