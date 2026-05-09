@@ -283,7 +283,7 @@
       {% for block in section.blocks %}
         <div class="testimonial-container">
           <div class="testimonial-name">
-            <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt_text }}">
+            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.alt_text }}">
           </div>
           <div class="testimonial-name_2-container">
             <div class="testimonial-name_2">
@@ -295,7 +295,7 @@
                 data-name="{{ block.settings.customer_name }}"
                 data-product="{{ block.settings.customer_product_text }}"
                 data-product-link="{{ block.settings.customer_product_link }}"
-                data-image="{{ block.settings.image | img_url: 'master' }}"
+                data-image="{{ block.settings.image | image_url: width: 800 }}"
               >
                 {{ block.settings.link_text }}
               </a>
