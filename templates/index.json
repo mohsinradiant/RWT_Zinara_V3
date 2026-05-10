@@ -47,7 +47,7 @@
             "heading_size": "h1",
             "subheading": "",
             "button_label": "",
-            "link": "shopify://collections/18-kt-gold-vermeil",
+            "link": "shopify://collections/prism3d-pendants",
             "button_style_secondary": false,
             "box_align": "middle-center",
             "show_text_box": true,
@@ -69,7 +69,7 @@
             "heading_size": "h1",
             "subheading": "",
             "button_label": "",
-            "link": "shopify://collections/9kt-14kt-fine-gold",
+            "link": "shopify://collections/double-take-two-stone-lab-grown-diamonds",
             "button_style_secondary": false,
             "box_align": "middle-center",
             "show_text_box": true,
@@ -338,6 +338,7 @@
       "blocks": {
         "collection_MwMYmm": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection_title": "@siesta",
             "collection_link": "shopify://collections",
@@ -349,7 +350,7 @@
           "type": "collection",
           "settings": {
             "collection_title": "@double.take",
-            "collection_link": "shopify://collections",
+            "collection_link": "shopify://collections/double-take-two-stone-lab-grown-diamonds",
             "collection_desktop_image": "shopify://shop_images/twostone_card.png",
             "collection_mobile_image": "shopify://shop_images/twostone_card.png"
           }
@@ -358,7 +359,7 @@
           "type": "collection",
           "settings": {
             "collection_title": "@prism.3d",
-            "collection_link": "shopify://collections",
+            "collection_link": "shopify://collections/prism3d-pendants",
             "collection_desktop_image": "shopify://shop_images/prism3d_card.png",
             "collection_mobile_image": "shopify://shop_images/prism3d_card.png"
           }
