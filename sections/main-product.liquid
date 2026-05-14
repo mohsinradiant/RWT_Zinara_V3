@@ -1307,16 +1307,20 @@
 
                     // ✅ Correct dataset selection
                     function getCurrentSet() {
-                      const option1 = currentVariant?.option1?.toLowerCase() || '';
+                      const allOptions = [
+                        currentVariant?.option1,
+                        currentVariant?.option2,
+                        currentVariant?.option3,
+                      ].map(o => (o || '').toLowerCase()).join(' ');
 
-                      console.log('OPTION1:', option1);
+                      console.log('ALL OPTIONS:', allOptions);
 
-                      if (option1.includes('gold') && !option1.includes('vermeil')) {
-                        return validPincodesGold;
+                      if (allOptions.includes('vermeil') || allOptions.includes('silver')) {
+                        return validPincodesSilver;
                       }
 
-                      if (option1.includes('vermeil') || option1.includes('silver')) {
-                        return validPincodesSilver;
+                      if (allOptions.includes('gold')) {
+                        return validPincodesGold;
                       }
 
                       return validPincodesGold;
