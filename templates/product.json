@@ -232,14 +232,15 @@
           "type": "block",
           "settings": {
             "image": "shopify://shop_images/Vector_29.png",
-            "heading": "IGI/SGL certified",
-            "mobile_heading": "BIS / IGI / SGL certified jewellery",
-            "subheading": "All our grown diamonds are IGI/SGL certified ensuring top quality",
+            "heading": "SGL certified diamonds",
+            "mobile_heading": "SGL certified diamonds",
+            "subheading": "All our grown diamonds are SGL certified ensuring top quality",
             "show_button": true
           }
         },
         "block_yPz4fU": {
           "type": "block",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Vector_30.png",
             "heading": "BIS Hallmarked Gold",
